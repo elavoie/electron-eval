@@ -121,6 +121,7 @@ class Daemon extends EventEmitter {
         process.kill(child.pid, 'SIGKILL')
       })
       this.xvfb = child
+      child.on('error', (err) => this.error(err))
       this.xDisplay = `:${display}`
       cb(null)
     })
